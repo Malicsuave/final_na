@@ -8,6 +8,7 @@
     <link href="css/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
+<?php include ('user-navbar.php'); ?>
 <section class="h-100 h-custom" style="background-color: #eee;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
