@@ -100,7 +100,7 @@ https://www.tooplate.com/view/2127-little-fashion
                                 <img src="<?php echo $profilePicture; ?>" width="30" height="30" class="rounded-circle mr-1" alt="Profile Picture"> <?php echo $username; ?>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#changeProfilePictureModal"><i class="fas fa-user-circle"></i> Change Profile Picture</a>
+                                <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#changeProfilePictureModal"><i class="fas fa-user-circle"></i> Change Profile Picture</a>
                                 <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#updateAccountInfoModal"><i class="fas fa-user-edit"></i> Update Account Information</a>
                                 <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#changePasswordModal"><i class="fas fa-key"></i> Change Password</a>
                                 <a class="dropdown-item" href="logout.php" onclick="return confirm('Are you sure you want to leave?')"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
