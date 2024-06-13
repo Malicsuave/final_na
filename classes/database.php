@@ -3,13 +3,13 @@
 class database{
 
     function opencon(){
-        return new PDO('mysql:host=localhost; dbname=finalcake', 'root', '');
+        return new PDO('mysql:host=localhost; dbname=cakes', 'root', '');
     }
 
 
     // function check($username, $password){
     //     $con = $this->opencon();
-    //     $query = "SELECT * from .signup WHERE username='".$username."'&&password='".$password."'                ";
+    //     $query = "SELECT * from signup WHERE username='".$username."'&&password='".$password."'                ";
     //     return $con->query($query)->fetch();
     // }
 
@@ -60,7 +60,7 @@ VALUES (?, ?, ?)")
 
 //     // Check if the username is already exists
 
-//     $query=$con->prepare("SELECT username FROM .signup WHERE username =?");
+//     $query=$con->prepare("SELECT username FROM signup WHERE username =?");
 //     $query->execute([$username]);
 //     $existingUser= $query->fetch();
     
@@ -70,7 +70,7 @@ VALUES (?, ?, ?)")
 //     return false;
 // }
 // // Insert the new username and password into the database
-//  $con->prepare("INSERT INTO .signup(username,password,firstname,lastname,birthday,sex)
+//  $con->prepare("INSERT INTO signup(username,password,firstname,lastname,birthday,sex)
 // VALUES (?, ?, ?, ?, ?, ?)")
 //            ->execute([$username,$password, $firstname, $lastname, $birthday, $sex]);
 //            return $con->lastInsertId();
@@ -81,7 +81,7 @@ function signupUser($firstname, $lastname, $birthday, $sex, $email, $username, $
 {
     $con = $this->opencon();
     // Save user data along with profile picture path to the database
-    $con->prepare("INSERT INTO .signup (firstname, lastname, birthday, sex, user_email, username, password, user_profile_picture) VALUES (?,?,?,?,?,?,?,?)")->execute([$firstname, $lastname, $birthday, $sex, $email, $username, $password, $profilePicture]);
+    $con->prepare("INSERT INTO signup (firstname, lastname, birthday, sex, user_email, username, password, user_profile_picture) VALUES (?,?,?,?,?,?,?,?)")->execute([$firstname, $lastname, $birthday, $sex, $email, $username, $password, $profilePicture]);
     return $con->lastInsertId();
     }
 // function insertAddress($User_Id, $street, $barangay, $city, $province){
@@ -103,20 +103,20 @@ function insertAddress($User_Id, $street, $barangay, $city, $province)
 function view(){
         $con = $this->opencon();
         return $con->query("SELECT
-        .signup.User_Id,
-        .signup.firstname,
-        .signup.lastname,
-        .signup.birthday,
-        .signup.sex,
-        .signup.username, 
-        .signup.password,
-        .signup.user_profile_picture, 
+        signup.User_Id,
+        signup.firstname,
+        signup.lastname,
+        signup.birthday,
+        signup.sex,
+        signup.username, 
+        signup.password,
+        signup.user_profile_picture, 
         CONCAT(
             user_address.street,' ',user_address.barangay,' ',user_address.city,' ',user_address.province
         ) AS address
     FROM
-        .signup
-    JOIN user_address ON .signup.User_Id = user_address.User_Id")->fetchAll();
+        signup
+    JOIN user_address ON signup.User_Id = user_address.User_Id")->fetchAll();
 
     }
 
@@ -135,7 +135,7 @@ function view(){
             // Delete user
 
           
-            $query2 = $con->prepare("DELETE FROM .signup
+            $query2 = $con->prepare("DELETE FROM signup
             WHERE User_Id =?");
             $query2->execute([$id]);
 
@@ -152,20 +152,20 @@ function viewdata($id){
     try {
         $con = $this->opencon();
         $query = $con->prepare("SELECT
-        .signup.User_Id,
-        .signup.firstname,
-        .signup.lastname,
-        .signup.birthday,
-        .signup.sex,
-        .signup.username, 
-        .signup.password,
-        .signup.user_profile_picture,
+        signup.User_Id,
+        signup.firstname,
+        signup.lastname,
+        signup.birthday,
+        signup.sex,
+        signup.username, 
+        signup.password,
+        signup.user_profile_picture,
         user_address.street,user_address.barangay,user_address.city,user_address.province
         
     FROM
-        .signup
-    JOIN user_address ON .signup.User_Id = user_address.User_Id
-    Where .signup.User_Id =?;");
+        signup
+    JOIN user_address ON signup.User_Id = user_address.User_Id
+    Where signup.User_Id =?;");
         $query->execute([$id]);
         return $query->fetch();
     } catch (PDOException $e) {
@@ -180,7 +180,7 @@ function viewdata($id){
         try { 
             $con = $this->opencon();
             $con->beginTransaction();
-            $query = $con->prepare("UPDATE .signup SET username=?, password=?, firstname=?, lastname=?, birthday=?, sex=? WHERE User_Id=?");
+            $query = $con->prepare("UPDATE signup SET username=?, password=?, firstname=?, lastname=?, birthday=?, sex=? WHERE User_Id=?");
             $query->execute([$username, $password, $firstname, $lastname, $birthday, $sex, $User_Id]);
         
             // Update Successful
@@ -214,7 +214,7 @@ function viewdata($id){
     
         
     // // function check_account_type($username) {
-    //     $query = $this->connection->prepare("SELECT account_type FROM .signup WHERE username = :username");
+    //     $query = $this->connection->prepare("SELECT account_type FROM signup WHERE username = :username");
     //     $query->bindParam(":username", $username);
     //     $query->execute();
 
@@ -232,7 +232,7 @@ function viewdata($id){
         $con = $this->opencon();
     
         // Prepare the SQL query
-        $query = $con->prepare("SELECT password FROM .signup WHERE User_Id = ?");
+        $query = $con->prepare("SELECT password FROM signup WHERE User_Id = ?");
         $query->execute([$User_Id]);
     
         // Fetch the user data as an associative array
@@ -250,7 +250,7 @@ function updatePassword($userId, $hashedPassword){
         try {
             $con = $this->opencon();
             $con->beginTransaction();
-            $query = $con->prepare("UPDATE .signup SET password = ? WHERE User_Id = ?");
+            $query = $con->prepare("UPDATE signup SET password = ? WHERE User_Id = ?");
             $query->execute([$hashedPassword, $userId]);
             // Update successful
             $con->commit();
@@ -265,7 +265,7 @@ function updatePassword($userId, $hashedPassword){
             try {
                 $con = $this->opencon();
                 $con->beginTransaction();
-                $query = $con->prepare("UPDATE .signup SET user_profile_picture = ? WHERE User_Id = ?");
+                $query = $con->prepare("UPDATE signup SET user_profile_picture = ? WHERE User_Id = ?");
                 $query->execute([$profilePicturePath, $userID]);
                 // Update successful`
                 $con->commit();

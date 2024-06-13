@@ -281,6 +281,8 @@ https://www.tooplate.com/view/2127-little-fashion
                         <br>
                         <p class="copyright-text">Designed by <a href="https://www.tooplate.com/" target="_blank">Tooplate</a></p>
                     </div>
+                    <div class="col-lg-5 col-8">
+                    <h5 class="text-white mb-3">Sitemap</h5>
 
                     <ul class="footer-menu d-flex flex-wrap">
                             <li class="footer-menu-item"><a href="about.php" class="footer-menu-link">About</a></li>

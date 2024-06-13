@@ -1,28 +1,29 @@
 <?php
- 
- require_once('classes/database.php');
- $con=new database();
+require_once('classes/database.php');
+$con = new database();
 
- $error = "";
-  if(isset($_POST["signup"])) {
+$error_message = "";
+
+if (isset($_POST["signup"])) {
     $username = $_POST['username'];
-    $email= $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-    
-   
-    
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $confirm = $_POST['confirm'];
 
-    if($password==$confirm) {
-        if ($con->signup($username,$email,$password)) {
-            header('location:sign-in.php');
-    }else{
-        $error_message ="Username already exists.Please Choose
-        a diffent username.";
+    if ($password == $confirm) {
+        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+
+        if ($con->signup($username, $email, $hashed_password)) {
+            header('Location: sign-in.php');
+            exit(); // Ensure no further code is executed after redirection
+        } else {
+            $error_message = "Username already exists. Please choose a different username.";
+        }
+    } else {
+        $error_message = "Passwords do not match.";
     }
 }
-
-  }
- ?>
+?>
 
 
 
@@ -65,6 +66,10 @@
     </head>
     
     <body>
+
+    <?php if (!empty($error_message)): ?>
+        <p style="color: red;"><?php echo $error_message; ?></p>
+    <?php endif; ?>
 
         <section class="preloader">
             <div class="spinner">
