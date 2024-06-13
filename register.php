@@ -11,7 +11,7 @@ if (isset($_POST['multisave'])) {
     // Getting the account information
     $username = $_POST['username'];
     $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    
     
     // Getting the personal information
     $firstname = $_POST['firstname'];
@@ -103,12 +103,12 @@ if (isset($_POST['multisave'])) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="./bootstrap-4.5.3-dist/css/bootstrap.css">
-  <link rel="stylesheet" href="./bootstrap-5.3.3-dist/css/bootstrap.css">
-  <link rel="stylesheet" href=".css/">
+  
+  <link rel="stylesheet" href="css/bootstrap.css">
+ 
   <!-- JQuery for Address Selector -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <title>Form with MultiStep and Address Selector</title>
+  <title>Marga's Cake - Register Page</title>
   <style>
     .form-step {
       display: none;
@@ -116,10 +116,13 @@ if (isset($_POST['multisave'])) {
     .form-step-active {
       display: block;
     }
+    footer{
+      margin-top: 20rem;
+    }
   </style>
 </head>
 <body>
-<?php include('includes/navbar.php'); ?>
+<?php include('user-navbar.php'); ?>
 <div class="container custom-container rounded-3 shadow my-5 p-3 px-5">
   <h3 class="text-center mt-4">Registration Form</h3>
   <form id="registration-form" method="post" action="" enctype="multipart/form-data" novalidate>
@@ -142,19 +145,7 @@ if (isset($_POST['multisave'])) {
             <div class="invalid-feedback">Please enter a valid email.</div>
             <div id="emailFeedback" class="invalid-feedback"></div> <!-- New feedback div -->
           </div>
-          <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" class="form-control" name="password" placeholder="Enter password" required>
-            <div class="valid-feedback">Looks good!</div>
-            <div class="invalid-feedback">Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one special character.</div>
-          </div>
-
-          <div class="form-group">
-            <label for="confirmPassword">Confirm Password:</label>
-            <input type="password" class="form-control" name="confirmPassword" placeholder="Re-enter your password" required>
-            <div class="valid-feedback">Looks good!</div>
-            <div class="invalid-feedback">Please confirm your password.</div>
-          </div>
+        
 
         </div>
       </div>
@@ -456,6 +447,60 @@ function validateStep(step) {
       
     
 });</script>
+ <!-- JAVASCRIPT FILES -->
+ <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/Headroom.js"></script>
+        <script src="js/jQuery.headroom.js"></script>
+        <script src="js/slick.min.js"></script>
+        <script src="js/custom.js"></script>
+
+<footer class="site-footer">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-10 me-auto mb-4">
+                        <h4 class="text-white mb-3"><a href="index.php">Little</a> Fashion</h4>
+                        <p class="copyright-text text-muted mt-lg-5 mb-4 mb-lg-0">Copyright © 2022 <strong>Little Fashion</strong></p>
+                        <br>
+                        <p class="copyright-text">Designed by <a href="https://www.tooplate.com/" target="_blank">Tooplate</a></p>
+                    </div>
+                    <div class="col-lg-5 col-8">
+                    <h5 class="text-white mb-3">Sitemap</h5>
+
+                    <ul class="footer-menu d-flex flex-wrap">
+                            <li class="footer-menu-item"><a href="about.php" class="footer-menu-link">About</a></li>
+
+                            <li class="footer-menu-item"><a href="products.php" class="footer-menu-link">Products</a></li>
+
+                            <li class="footer-menu-item"><a href="" class="footer-menu-link">Privacy policy</a></li>
+
+                            <li class="footer-menu-item"><a href="faq.php" class="footer-menu-link">FAQs</a></li>
+
+                            <li class="footer-menu-item"><a href="contact.php" class="footer-menu-link">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-4">
+                        <h5 class="text-white mb-3">Social</h5>
+
+                        <ul class="social-icon">
+
+                            <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="social-icon-link bi-youtube"></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="social-icon-link bi-whatsapp"></a></li>
+
+                            <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="social-icon-link bi-instagram"></a></li>
+
+                            <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="social-icon-link bi-skype"></a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+
+       
+
   
   </body>
   </html>

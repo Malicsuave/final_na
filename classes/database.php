@@ -77,11 +77,11 @@ VALUES (?, ?, ?)")
 // }
 
 
-function signupUser($firstname, $lastname, $birthday, $sex, $email, $username, $password, $profilePicture)
+function signupUser($firstname, $lastname, $birthday, $sex, $email, $username, $profilePicture)
 {
     $con = $this->opencon();
     // Save user data along with profile picture path to the database
-    $con->prepare("INSERT INTO signup (firstname, lastname, birthday, sex, user_email, username, password, user_profile_picture) VALUES (?,?,?,?,?,?,?,?)")->execute([$firstname, $lastname, $birthday, $sex, $email, $username, $password, $profilePicture]);
+    $con->prepare("INSERT INTO register_user (firstname, lastname, birthday, sex, email, username, user_profile_picture) VALUES (?,?,?,?,?,?,?)")->execute([$firstname, $lastname, $birthday, $sex, $email, $username, $profilePicture]);
     return $con->lastInsertId();
     }
 // function insertAddress($User_Id, $street, $barangay, $city, $province){
