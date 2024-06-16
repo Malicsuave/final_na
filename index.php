@@ -30,9 +30,9 @@ https://www.tooplate.com/view/2127-little-fashion
 
 -->
     </head>
-    
+    <?php include ('user-navbar.php'); ?> 
     <body>
-    <?php include ('user-navbar.php'); ?>+
+    
         <section class="preloader">
             <div class="spinner">
                 <span class="sk-inner-circle"></span>
@@ -41,9 +41,10 @@ https://www.tooplate.com/view/2127-little-fashion
     
         <main>
 
-           
+        
 
-            <section class="slick-slideshow">   
+            <section class="slick-slideshow">  
+                 
                 <div class="slick-custom">
                     <img src="photos/header 1.png" class="img-fluid" alt="">
 

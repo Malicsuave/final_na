@@ -81,7 +81,7 @@ function signupUser($firstname, $lastname, $birthday, $sex, $email, $username, $
 {
     $con = $this->opencon();
     // Save user data along with profile picture path to the database
-    $con->prepare("INSERT INTO register_user (firstname, lastname, birthday, sex, email, username, user_profile_picture) VALUES (?,?,?,?,?,?,?)")->execute([$firstname, $lastname, $birthday, $sex, $email, $username, $profilePicture]);
+    $con->prepare("INSERT INTO registered_user (firstname, lastname, birthday, sex, email, username, user_profile_picture) VALUES (?,?,?,?,?,?,?)")->execute([$firstname, $lastname, $birthday, $sex, $email, $username, $profilePicture]);
     return $con->lastInsertId();
     }
 // function insertAddress($User_Id, $street, $barangay, $city, $province){

@@ -9,6 +9,7 @@ $error = "";
 if (isset($_POST['multisave'])) {
     
     // Getting the account information
+    $User_Id =$_POST['User_Id'];
     $username = $_POST['username'];
     $email = $_POST['email'];
     
@@ -72,11 +73,11 @@ if (isset($_POST['multisave'])) {
             // Save the user data and the path to the profile picture in the database
             $profile_picture_path = 'uploads/'.$new_file_name; // Save the new file name (without directory)
             
-            $userID = $con->signupUser($firstname, $lastname, $birthday, $sex, $email, $username, $password, $profile_picture_path);
+            $userID = $con->signupUser($firstname, $lastname, $birthday, $sex, $email, $username, $profile_picture_path);
 
             if ($userID) {
                 // Signup successful, insert address into users_address table
-                if ($con->insertAddress($userID, $street, $barangay, $city, $province)) {
+                if ($con->insertAddress($User_Id, $street, $barangay, $city, $province)) {
                     // Address insertion successful, redirect to login page
                     header('location:index.php');
                     exit; // Stop further execution

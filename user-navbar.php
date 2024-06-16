@@ -1,5 +1,5 @@
 <?php
-session_start(); // Ensure the session is started
+
 $current_page = basename($_SERVER['PHP_SELF']);
 require_once('classes/database.php');
 $con = new Database();
@@ -8,14 +8,15 @@ if (isset($_SESSION['User_Id'])) {
     $id = $_SESSION['User_Id'];
     $data = $con->viewdata($id);
 
-    // Assuming the profile picture URL is stored in the session or fetched from the database
-    $profilePicture = $data['user_profile_picture'] ?? 'path/to/default/profile_picture.jpg';
-    $username = $_SESSION['username'];
+    
+    $profilePicture = $data['profile_picture'] ?? 'path/to/default/profile_picture.jpg';
+    $username = $_SESSION['username'] ?? 'Guest';
 } else {
     $profilePicture = 'path/to/default/profile_picture.jpg';
     $username = 'Guest';
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,30 +34,15 @@ if (isset($_SESSION['User_Id'])) {
 
         <!-- CSS FILES -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
-
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap" rel="stylesheet">
-
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap-icons.css" rel="stylesheet">
-
         <link rel="stylesheet" href="css/slick.css"/>
-
         <link href="css/tooplate-little-fashion.css" rel="stylesheet">
-        
-<!--
-
-Tooplate 2127 Little Fashion
-
-https://www.tooplate.com/view/2127-little-fashion
-
--->
     </head>
 </head>
 <body>
-
-
 
 <nav class="navbar navbar-expand-lg">
     <div class="container">
@@ -99,12 +85,12 @@ https://www.tooplate.com/view/2127-little-fashion
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img src="<?php echo $profilePicture; ?>" width="30" height="30" class="rounded-circle mr-1" alt="Profile Picture"> <?php echo $username; ?>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href=""><i class="fas fa-user-circle"></i> Upload Profile Picture</a>
-                                <a class="dropdown-item" href="register.php"><i class="fas fa-user-edit"></i>Register</a>
-                                <a class="dropdown-item" href="#" ><i class="fas fa-key"></i> Change Password</a>
-                                <a class="dropdown-item" href="logout.php" onclick="return confirm('Are you sure you want to leave?')"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
-                            </div>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href=""><i class="fas fa-user-circle"></i> Upload Profile Picture</a></li>
+                                <li><a class="dropdown-item" href="register.php"><i class="fas fa-user-edit"></i> Register</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-key"></i> Change Password</a></li>
+                                <li><a class="dropdown-item" href="logout.php" onclick="return confirm('Are you sure you want to leave?')"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                            </ul>
                         </li>
                     </ul>
                 <?php else: ?>
@@ -119,6 +105,11 @@ https://www.tooplate.com/view/2127-little-fashion
 <!-- Include Bootstrap JS and dependencies -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/Headroom.js"></script>
+<script src="js/jQuery.headroom.js"></script>
+<script src="js/slick.min.js"></script>
+<script src="js/custom.js"></script>
 </body>
 </html>
