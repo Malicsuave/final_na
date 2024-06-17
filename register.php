@@ -7,24 +7,22 @@ require_once('classes/database.php');
 $con = new database();
 $error = "";
 if (isset($_POST['multisave'])) {
-    
-    // Getting the account information
-    $User_Id =$_POST['User_Id'];
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    
-    
-    // Getting the personal information
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
-    $birthday = $_POST['birthday'];
-    $sex = $_POST['sex'];
-  
-    // Getting the address information
-    $street = $_POST['user_street'];
-    $barangay = $_POST['barangay_text'];
-    $city = $_POST['city_text'];
-    $province = $_POST['region_text'];
+  // Getting the account information
+  $username = $_POST['username'];
+  $email = $_POST['email'];
+  $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+
+  // Getting the personal information
+  $firstname = $_POST['firstname'];
+  $lastname = $_POST['lastname'];
+  $birthday = $_POST['birthday'];
+  $sex = $_POST['sex'];
+
+  // Getting the address information
+  $street = $_POST['street'];
+  $barangay = $_POST['barangay'];
+  $city = $_POST['city'];
+  $province = $_POST['region'];
 
    // Handle file upload
    $target_dir = "uploads/";
@@ -73,7 +71,7 @@ if (isset($_POST['multisave'])) {
             // Save the user data and the path to the profile picture in the database
             $profile_picture_path = 'uploads/'.$new_file_name; // Save the new file name (without directory)
             
-            $userID = $con->signupUser($firstname, $lastname, $birthday, $sex, $email, $username, $profile_picture_path);
+            $userID = $con->signupUser($firstname, $lastname, $birthday, $sex, $email, $username, $profile_picture_path, $password);
 
             if ($userID) {
                 // Signup successful, insert address into users_address table
@@ -146,8 +144,19 @@ if (isset($_POST['multisave'])) {
             <div class="invalid-feedback">Please enter a valid email.</div>
             <div id="emailFeedback" class="invalid-feedback"></div> <!-- New feedback div -->
           </div>
-        
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" name="password" placeholder="Enter password" required>
+            <div class="valid-feedback">Looks good!</div>
+            <div class="invalid-feedback">Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one special character.</div>
+          </div>
 
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" class="form-control" name="confirmPassword" placeholder="Re-enter your password" required>
+            <div class="valid-feedback">Looks good!</div>
+            <div class="invalid-feedback">Please confirm your password.</div>
+          </div>
         </div>
       </div>
       <button type="button" id="nextButton" class="btn btn-primary mt-3" onclick="nextStep()">Next</button>
@@ -211,7 +220,7 @@ if (isset($_POST['multisave'])) {
         <div class="card-body">
           <div class="form-group">
             <label class="form-label">Region<span class="text-danger"> *</span></label>
-            <select name="user_region" class="form-control form-control-md" id="region"></select>
+            <select name="region" class="form-control form-control-md" id="region"></select>
             <input type="hidden" class="form-control form-control-md" name="region_text" id="region-text">
             <div class="valid-feedback">Looks good!</div>
             <div class="invalid-feedback">Please select a region.</div>
@@ -219,14 +228,14 @@ if (isset($_POST['multisave'])) {
           <div class="form-row">
             <div class="form-group col-md-6">
               <label class="form-label">Province<span class="text-danger"> *</span></label>
-              <select name="user_province" class="form-control form-control-md" id="province"></select>
+              <select name="province" class="form-control form-control-md" id="province"></select>
               <input type="hidden" class="form-control form-control-md" name="province_text" id="province-text" required>
               <div class="valid-feedback">Looks good!</div>
               <div class="invalid-feedback">Please select your province.</div>
             </div>
             <div class="form-group col-md-6">
               <label class="form-label">City / Municipality<span class="text-danger"> *</span></label>
-              <select name="user_city" class="form-control form-control-md" id="city"></select>
+              <select name="city" class="form-control form-control-md" id="city"></select>
               <input type="hidden" class="form-control form-control-md" name="city_text" id="city-text" required>
               <div class="valid-feedback">Looks good!</div>
               <div class="invalid-feedback">Please select your city/municipality.</div>
@@ -234,14 +243,14 @@ if (isset($_POST['multisave'])) {
           </div>
           <div class="form-group">
             <label class="form-label">Barangay<span class="text-danger"> *</span></label>
-            <select name="user_barangay" class="form-control form-control-md" id="barangay"></select>
+            <select name="barangay" class="form-control form-control-md" id="barangay"></select>
             <input type="hidden" class="form-control form-control-md" name="barangay_text" id="barangay-text" required>
             <div class="valid-feedback">Looks good!</div>
             <div class="invalid-feedback">Please select your barangay.</div>
           </div>
           <div class="form-group">
             <label class="form-label">Street <span class="text-danger"> *</span></label>
-            <input type="text" class="form-control form-control-md" name="user_street" id="street-text" required>
+            <input type="text" class="form-control form-control-md" name="street" id="street-text" required>
             <div class="valid-feedback">Looks good!</div>
             <div class="invalid-feedback">Please select your street.</div>
           </div>
