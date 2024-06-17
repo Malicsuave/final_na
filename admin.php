@@ -113,7 +113,7 @@ if(isset($message)){
          
         
          $counter = 1;
-         $data = $con->view();
+         $data = $con->viewdata($User_Id);
          foreach ($data as $rows){
                 ?>
 

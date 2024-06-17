@@ -100,26 +100,45 @@ function insertAddress($User_Id, $street, $barangay, $city, $province)
       
 }
 
-function view(){
-        $con = $this->opencon();
-        return $con->query("SELECT
-        signup.User_Id,
-        signup.firstname,
-        signup.lastname,
-        signup.birthday,
-        signup.sex,
-        signup.username, 
-        signup.password,
-        signup.user_profile_picture, 
-        CONCAT(
-            user_address.street,' ',user_address.barangay,' ',user_address.city,' ',user_address.province
-        ) AS address
-    FROM
-        signup
-    JOIN user_address ON signup.User_Id = user_address.User_Id")->fetchAll();
+// function view(){
+//         $con = $this->opencon();
+//         return $con->query("SELECT
+//         signup.User_Id,
+//         signup.firstname,
+//         signup.lastname,
+//         signup.birthday,
+//         signup.sex,
+//         signup.username, 
+//         signup.password,
+//         signup.user_profile_picture, 
+//         CONCAT(
+//             user_address.street,' ',user_address.barangay,' ',user_address.city,' ',user_address.province
+//         ) AS address
+//     FROM
+//         signup
+//     JOIN user_address ON signup.User_Id = user_address.User_Id")->fetchAll();
 
-    }
+//     }
 
+    // function view(){
+    //     $con = $this->opencon();
+    //     return $con->query("SELECT
+    //     signup.User_Id,
+    //     registered_user.firstname,
+    //     registered_user.lastname,
+    //     registered_user.birthday,
+    //     registered_user.sex,
+    //     registered_user.username, 
+    //     registered_user.password,
+    //     signup.user_profile_picture, 
+    //     CONCAT(
+    //         user_address.street,' ',user_address.barangay,' ',user_address.city,' ',user_address.province
+    //     ) AS address
+    // FROM
+    //     signup
+    // JOIN user_address ON signup.User_Id = user_address.User_Id")->fetchAll();
+
+    // }
     
     function delete($id){
         try{

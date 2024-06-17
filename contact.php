@@ -33,7 +33,7 @@ https://www.tooplate.com/view/2127-little-fashion
     </head>
     
     <body>
-    <?php include ('user-navbar.php'); ?>
+    <?php include ('includes/navbar.php'); ?> 
         <section class="preloader">
             <div class="spinner">
                 <span class="sk-inner-circle"></span>
