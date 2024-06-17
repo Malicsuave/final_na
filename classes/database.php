@@ -77,28 +77,19 @@ VALUES (?, ?, ?)")
 // }
 
 
-function signupUser($firstname, $lastname, $birthday, $sex, $email, $username, $profilePicture)
-{
+function signupUser($firstname, $lastname, $birthday, $sex, $email, $username, $profilePicture, $password) {
     $con = $this->opencon();
-    // Save user data along with profile picture path to the database
-    $con->prepare("INSERT INTO registered_user (firstname, lastname, birthday, sex, email, username, user_profile_picture) VALUES (?,?,?,?,?,?,?)")->execute([$firstname, $lastname, $birthday, $sex, $email, $username, $profilePicture]);
-    return $con->lastInsertId();
-    }
-// function insertAddress($User_Id, $street, $barangay, $city, $province){
-//     $con = $this->opencon();
-//      return $con->prepare("INSERT INTO user_address (User_Id,street, barangay, city,province) VALUES(?, ?, ?, ?, ?)") ->execute([$User_Id, $street, $barangay, $city, $province]);
-    
- 
-
-// }
-
-
-function insertAddress($User_Id, $street, $barangay, $city, $province)
-{
-    $con = $this->opencon();
-    return $con->prepare("INSERT INTO user_address (User_Id, street, barangay, city, province) VALUES (?,?,?,?,?)")->execute([$User_Id, $street, $barangay,  $city, $province]);
-      
+    $stmt = $con->prepare("INSERT INTO registered_user (firstname, lastname, birthday, sex, email, username, user_profile_picture, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->execute([$firstname, $lastname, $birthday, $sex, $email, $username, $profilePicture, $password]);
+    return $con->lastInsertId(); // Ensure this returns the correct ID
 }
+
+function insertAddress($User_Id, $street, $barangay, $city, $province) {
+    $con = $this->opencon();
+    $stmt = $con->prepare("INSERT INTO user_address (registered_Id, street, barangay, city, province) VALUES (?, ?, ?, ?, ?)");
+    $stmt->execute([$User_Id, $street, $barangay, $city, $province]);
+}
+
 
 // function view(){
 //         $con = $this->opencon();
@@ -217,7 +208,7 @@ function viewdata($id){
         try { 
             $con = $this->opencon();
             $con->beginTransaction();
-            $query = $con->prepare("UPDATE user_address SET street=?, barangay=?, city=?, province=?  WHERE User_Id=?");
+            $query = $con->prepare("UPDATE user_address SET street=?, barangay=?, city=?, province=?  WHERE registered_ID=?");
             $query->execute([$street,$barangay,$city,$province, $User_Id]);
         
             // Update Successful
