@@ -40,6 +40,8 @@ if (isset($_SESSION['User_Id'])) {
         <link rel="stylesheet" href="css/slick.css"/>
 
         <link href="css/tooplate-little-fashion.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 <!--
 
 Tooplate 2127 Little Fashion
@@ -376,15 +378,15 @@ https://www.tooplate.com/view/2127-little-fashion
                 <div class="row">
 
                     <div class="col-lg-3 col-10 me-auto mb-4">
-                        <h4 class="text-white mb-3"><a href="index.php">Little</a> Fashion</h4>
-                        <p class="copyright-text text-muted mt-lg-5 mb-4 mb-lg-0">Copyright © 2022 <strong>Little Fashion</strong></p>
+                        <h4 class="text-white mb-3"><a href="index.php">Marga's</a> Cake</h4>
+                        <p class="copyright-text text-muted mt-lg-5 mb-4 mb-lg-0">Copyright © 2024 <strong>Marga's Cake</strong></p>
                         <br>
-                        <p class="copyright-text">Designed by <a href="https://www.tooplate.com/" target="_blank">Tooplate</a></p>
+                        <p class="copyright-text">Designed by <a href="https://www.margascake.com/" target="_blank">Developer</a></p>
                     </div>
+
                     <div class="col-lg-5 col-8">
                         <h5 class="text-white mb-3">Sitemap</h5>
-
-                    <ul class="footer-menu d-flex flex-wrap">
+                        <ul class="footer-menu d-flex flex-wrap">
                             <li class="footer-menu-item"><a href="about.php" class="footer-menu-link">About</a></li>
 
                             <li class="footer-menu-item"><a href="products.php" class="footer-menu-link">Products</a></li>
@@ -414,6 +416,7 @@ https://www.tooplate.com/view/2127-little-fashion
                 </div>
             </div>
         </footer>
+
 
         <!-- JAVASCRIPT FILES -->
         <script src="js/jquery.min.js"></script>

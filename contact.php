@@ -30,7 +30,7 @@ if (isset($_SESSION['User_Id'])) {
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Tooplate's Little Fashion - Contact Page</title>
+        <title>Marga's Cake - Contact Page</title>
 
         <!-- CSS FILES -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -172,10 +172,10 @@ https://www.tooplate.com/view/2127-little-fashion
                 <div class="row">
 
                     <div class="col-lg-3 col-10 me-auto mb-4">
-                        <h4 class="text-white mb-3"><a href="index.php">Little</a> Fashion</h4>
-                        <p class="copyright-text text-muted mt-lg-5 mb-4 mb-lg-0">Copyright © 2022 <strong>Little Fashion</strong></p>
+                        <h4 class="text-white mb-3"><a href="index.php">Marga's</a> Cake</h4>
+                        <p class="copyright-text text-muted mt-lg-5 mb-4 mb-lg-0">Copyright © 2024 <strong>Marga's Cake</strong></p>
                         <br>
-                        <p class="copyright-text">Designed by <a href="https://www.tooplate.com/" target="_blank">Tooplate</a></p>
+                        <p class="copyright-text">Designed by <a href="https://www.margascake.com/" target="_blank">Developer</a></p>
                     </div>
 
                     <div class="col-lg-5 col-8">
@@ -210,6 +210,7 @@ https://www.tooplate.com/view/2127-little-fashion
                 </div>
             </div>
         </footer>
+
 
         <!-- JAVASCRIPT FILES -->
         <script src="js/jquery.min.js"></script>

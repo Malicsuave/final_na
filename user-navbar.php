@@ -40,6 +40,7 @@ if (isset($_SESSION['User_Id'])) {
         <link href="css/bootstrap-icons.css" rel="stylesheet">
         <link rel="stylesheet" href="css/slick.css"/>
         <link href="css/tooplate-little-fashion.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     </head>
 </head>
 <body>
@@ -89,6 +90,8 @@ if (isset($_SESSION['User_Id'])) {
                                 <li><a class="dropdown-item" href=""><i class="fas fa-user-circle"></i> Upload Profile Picture</a></li>
                                 <li><a class="dropdown-item" href="register.php"><i class="fas fa-user-edit"></i> Register</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="fas fa-key"></i> Change Password</a></li>
+                                <li><a class="dropdown-item" href="cart.php"><i class="fa fa-cart-shopping"></i> Cart</a></li>
+                                <li><a class="dropdown-item" href="products.php"><span> </span> <i class="fa-solid fa-cake-candles"></i>Product</a></li>
                                 <li><a class="dropdown-item" href="logout.php" onclick="return confirm('Are you sure you want to leave?')"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
                             </ul>
                         </li>

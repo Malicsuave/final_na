@@ -1,89 +1,71 @@
+
+
 <?php
+session_start();
+$current_page = basename($_SERVER['PHP_SELF']);
+require_once('classes/database.php');
+$con = new Database();
 
-@include 'config.php';
+if (isset($_SESSION['User_Id'])) {
+    $id = $_SESSION['User_Id'];
+    $data = $con->viewdata($id);
 
-if(isset($_POST['add_product'])){
-   $p_name = $_POST['p_name'];
-   $p_price = $_POST['p_price'];
-   $p_image = $_FILES['p_image']['name'];
-   $p_image_tmp_name = $_FILES['p_image']['tmp_name'];
-   $p_image_folder = 'uploaded_img/'.$p_image;
-
-   $insert_query = mysqli_query($conn, "INSERT INTO `products`(name, price, image) VALUES('$p_name', '$p_price', '$p_image')") or die('query failed');
-
-   if($insert_query){
-      move_uploaded_file($p_image_tmp_name, $p_image_folder);
-      $message[] = 'product add succesfully';
-   }else{
-      $message[] = 'could not add the product';
-   }
-};
-
-if(isset($_GET['delete'])){
-   $delete_id = $_GET['delete'];
-   $delete_query = mysqli_query($conn, "DELETE FROM `products` WHERE id = $delete_id ") or die('query failed');
-   if($delete_query){
-      header('location:admin.php');
-      $message[] = 'product has been deleted';
-   }else{
-      header('location:admin.php');
-      $message[] = 'product could not be deleted';
-   };
-};
-
-if(isset($_POST['update_product'])){
-   $update_p_id = $_POST['update_p_id'];
-   $update_p_name = $_POST['update_p_name'];
-   $update_p_price = $_POST['update_p_price'];
-   $update_p_image = $_FILES['update_p_image']['name'];
-   $update_p_image_tmp_name = $_FILES['update_p_image']['tmp_name'];
-   $update_p_image_folder = 'uploaded_img/'.$update_p_image;
-
-   $update_query = mysqli_query($conn, "UPDATE `products` SET name = '$update_p_name', price = '$update_p_price', image = '$update_p_image' WHERE id = '$update_p_id'");
-
-   if($update_query){
-      move_uploaded_file($update_p_image_tmp_name, $update_p_image_folder);
-      $message[] = 'product updated succesfully';
-      header('location:admin.php');
-   }else{
-      $message[] = 'product could not be updated';
-      header('location:admin.php');
-   }
-
+    $profilePicture = $data['user_profile_picture'] ?? 'path/to/default/profile_picture.jpg';
+    $username = $_SESSION['username'];
+} else {
+    $profilePicture = 'path/to/default/profile_picture.jpg';
+    $username = 'Guest';
 }
-
 ?>
 
-<!DOCTYPE html>
+
+
+
+<!doctype html>
 <html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>admin panel</title>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
+        <title>Marga's Cake - Admin Page</title>
 
-</head>
-<body>
-<?php include ('user-navbar.php'); ?>
-<?php
+        <!-- CSS FILES -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
 
-if(isset($message)){
-   foreach($message as $message){
-      echo '<div class="message"><span>'.$message.'</span> <i class="fas fa-times" onclick="this.parentElement.style.display = `none`;"></i> </div>';
-   };
-};
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-?>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap" rel="stylesheet">
 
-<?php include 'header.php'; ?>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-icons.css" rel="stylesheet">
 
-<div class="container">
+        <link rel="stylesheet" href="css/slick.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
+
+        <link href="css/tooplate-little-fashion.css" rel="stylesheet">
+        
+<!--
+
+Tooplate 2127 Little Fashion
+
+https://www.tooplate.com/view/2127-little-fashion
+
+-->
+    </head>
+    
+    <body>
+    <?php include ('user-navbar.php'); ?> 
+        <section class="preloader">
+            <div class="spinner">
+                <span class="sk-inner-circle"></span>
+            </div>
+        </section>
+    
+       
+        <div class="container">
 
 <section>
 
@@ -175,16 +157,56 @@ if(isset($message)){
 
 
 
+        <footer class="site-footer">
+            <div class="container">
+                <div class="row">
 
+                    <div class="col-lg-3 col-10 me-auto mb-4">
+                        <h4 class="text-white mb-3"><a href="index.php">Marga's</a> Cake</h4>
+                        <p class="copyright-text text-muted mt-lg-5 mb-4 mb-lg-0">Copyright © 2024 <strong>Marga's Cake</strong></p>
+                        <br>
+                        <p class="copyright-text">Designed by <a href="https://www.margascake.com/" target="_blank">Developer</a></p>
+                    </div>
 
+                    <div class="col-lg-5 col-8">
+                        <h5 class="text-white mb-3">Sitemap</h5>
+                        <ul class="footer-menu d-flex flex-wrap">
+                            <li class="footer-menu-item"><a href="about.php" class="footer-menu-link">About</a></li>
 
+                            <li class="footer-menu-item"><a href="products.php" class="footer-menu-link">Products</a></li>
 
+                            <li class="footer-menu-item"><a href="" class="footer-menu-link">Privacy policy</a></li>
 
+                            <li class="footer-menu-item"><a href="faq.php" class="footer-menu-link">FAQs</a></li>
 
+                            <li class="footer-menu-item"><a href="contact.php" class="footer-menu-link">Contact</a></li>
+                        </ul>
+                    </div>
 
+                    <div class="col-lg-3 col-4">
+                        <h5 class="text-white mb-3">Social</h5>
 
-<!-- custom js file link  -->
-<script src="js/script.js"></script>
+                        <ul class="social-icon">
 
-</body>
+                            <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="social-icon-link bi-youtube"></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="social-icon-link bi-whatsapp"></a></li>
+
+                            <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="social-icon-link bi-instagram"></a></li>
+
+                            <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="social-icon-link bi-skype"></a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+
+        <!-- JAVASCRIPT FILES -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/Headroom.js"></script>
+        <script src="js/jQuery.headroom.js"></script>
+        <script src="js/slick.min.js"></script>
+        <script src="js/custom.js"></script>
+    </body>
 </html>

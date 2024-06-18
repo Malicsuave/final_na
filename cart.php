@@ -1,235 +1,145 @@
+<?php
+session_start();
+$current_page = basename($_SERVER['PHP_SELF']);
+require_once('classes/database.php');
+$con = new Database();
+
+if (isset($_SESSION['User_Id'])) {
+    $id = $_SESSION['User_Id'];
+    $data = $con->viewdata($id);
+
+    $profilePicture = $data['user_profile_picture'] ?? 'path/to/default/profile_picture.jpg';
+    $username = $_SESSION['username'];
+} else {
+    $profilePicture = 'path/to/default/profile_picture.jpg';
+    $username = 'Guest';
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-icons.css" rel="stylesheet">
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Shopping Cart</title>
+
+   <!-- Bootstrap CSS -->
+   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+   <!-- Font Awesome CSS -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   <!-- Custom CSS -->
+   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <?php include ('user-navbar.php'); ?>
-<section class="h-100 h-custom" style="background-color: #eee;">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col">
-        <div class="card">
-          <div class="card-body p-4">
 
-            <div class="row">
+<div class="container">
 
-              <div class="col-lg-7">
-                <h5 class="mb-3"><a href="#!" class="text-body"><i
-                      class="fas fa-long-arrow-alt-left me-2"></i>Continue shopping</a></h5>
-                <hr>
+<section class="shopping-cart">
 
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                  <div>
-                    <p class="mb-1">Shopping cart</p>
-                    <p class="mb-0">You have 4 items in your cart</p>
-                  </div>
-                  <div>
-                    <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!"
-                        class="text-body">price <i class="fas fa-angle-down mt-1"></i></a></p>
-                  </div>
-                </div>
+   <h1 class="heading">Shopping Cart</h1>
 
-                <div class="card mb-3">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                      <div class="d-flex flex-row align-items-center">
-                        <div>
-                          <img
-                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                            class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                        </div>
-                        <div class="ms-3">
-                          <h5>Iphone 11 pro</h5>
-                          <p class="small mb-0">256GB, Navy Blue</p>
-                        </div>
-                      </div>
-                      <div class="d-flex flex-row align-items-center">
-                        <div style="width: 50px;">
-                          <h5 class="fw-normal mb-0">2</h5>
-                        </div>
-                        <div style="width: 80px;">
-                          <h5 class="mb-0">$900</h5>
-                        </div>
-                        <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+   <table class="table">
+      <thead>
+         <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+            <th>Action</th>
+         </tr>
+      </thead>
 
-                <div class="card mb-3">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                      <div class="d-flex flex-row align-items-center">
-                        <div>
-                          <img
-                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img2.webp"
-                            class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                        </div>
-                        <div class="ms-3">
-                          <h5>Samsung galaxy Note 10 </h5>
-                          <p class="small mb-0">256GB, Navy Blue</p>
-                        </div>
-                      </div>
-                      <div class="d-flex flex-row align-items-center">
-                        <div style="width: 50px;">
-                          <h5 class="fw-normal mb-0">2</h5>
-                        </div>
-                        <div style="width: 80px;">
-                          <h5 class="mb-0">$900</h5>
-                        </div>
-                        <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+      <tbody>
+         <tr>
+            <td><img src="uploaded_img/sample_image.jpg" height="100" alt=""></td>
+            <td>Sample Item</td>
+            <td>$100/-</td>
+            <td>
+               <form action="" method="post">
+                  <input type="hidden" name="update_quantity_id" value="1">
+                  <input type="number" name="update_quantity" min="1" value="1">
+                  <input type="submit" value="Update" name="update_update_btn">
+               </form>
+            </td>
+            <td>$100/-</td>
+            <td><a href="#" onclick="return confirm('Remove item from cart?')" class="delete-btn"> <i class="fas fa-trash"></i> Remove</a></td>
+         </tr>
+         <tr class="table-bottom">
+            <td><a href="products.php" class="option-btn" style="margin-top: 0;">Continue Shopping</a></td>
+            <td colspan="3">Grand Total</td>
+            <td>$100/-</td>
+            <td><a href="#" onclick="return confirm('Are you sure you want to delete all?');" class="delete-btn"> <i class="fas fa-trash"></i> Delete All </a></td>
+         </tr>
+      </tbody>
+   </table>
 
-                <div class="card mb-3">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                      <div class="d-flex flex-row align-items-center">
-                        <div>
-                          <img
-                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img3.webp"
-                            class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                        </div>
-                        <div class="ms-3">
-                          <h5>Canon EOS M50</h5>
-                          <p class="small mb-0">Onyx Black</p>
-                        </div>
-                      </div>
-                      <div class="d-flex flex-row align-items-center">
-                        <div style="width: 50px;">
-                          <h5 class="fw-normal mb-0">1</h5>
-                        </div>
-                        <div style="width: 80px;">
-                          <h5 class="mb-0">$1199</h5>
-                        </div>
-                        <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+   <div class="checkout-btn">
+      <a href="checkout.php" class="btn">Proceed to Checkout</a>
+   </div>
 
-                <div class="card mb-3 mb-lg-0">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                      <div class="d-flex flex-row align-items-center">
-                        <div>
-                          <img
-                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img4.webp"
-                            class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                        </div>
-                        <div class="ms-3">
-                          <h5>MacBook Pro</h5>
-                          <p class="small mb-0">1TB, Graphite</p>
-                        </div>
-                      </div>
-                      <div class="d-flex flex-row align-items-center">
-                        <div style="width: 50px;">
-                          <h5 class="fw-normal mb-0">1</h5>
-                        </div>
-                        <div style="width: 80px;">
-                          <h5 class="mb-0">$1799</h5>
-                        </div>
-                        <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              <div class="col-lg-5">
-
-                <div class="card bg-primary text-white rounded-3">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                      <h5 class="mb-0">Card details</h5>
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
-                        class="img-fluid rounded-3" style="width: 45px;" alt="Avatar">
-                    </div>
-
-                    <p class="small mb-2">Card type</p>
-                    <a href="#!" type="submit" class="text-white"><i
-                        class="fab fa-cc-mastercard fa-2x me-2"></i></a>
-                    <a href="#!" type="submit" class="text-white"><i
-                        class="fab fa-cc-visa fa-2x me-2"></i></a>
-                    <a href="#!" type="submit" class="text-white"><i
-                        class="fab fa-cc-amex fa-2x me-2"></i></a>
-                    <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-paypal fa-2x"></i></a>
-
-                    <form class="mt-4">
-                      <div data-mdb-input-init class="form-outline form-white mb-4">
-                        <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
-                          placeholder="Cardholder's Name" />
-                        <label class="form-label" for="typeName">Cardholder's Name</label>
-                      </div>
-
-                      <div data-mdb-input-init class="form-outline form-white mb-4">
-                        <input type="text" id="typeText" class="form-control form-control-lg" siez="17"
-                          placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
-                        <label class="form-label" for="typeText">Card Number</label>
-                      </div>
-
-                      <div class="row mb-4">
-                        <div class="col-md-6">
-                          <div data-mdb-input-init class="form-outline form-white">
-                            <input type="text" id="typeExp" class="form-control form-control-lg"
-                              placeholder="MM/YYYY" size="7" id="exp" minlength="7" maxlength="7" />
-                            <label class="form-label" for="typeExp">Expiration</label>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div data-mdb-input-init class="form-outline form-white">
-                            <input type="password" id="typeText" class="form-control form-control-lg"
-                              placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
-                            <label class="form-label" for="typeText">Cvv</label>
-                          </div>
-                        </div>
-                      </div>
-
-                    </form>
-
-                    <hr class="my-4">
-
-                    <div class="d-flex justify-content-between">
-                      <p class="mb-2">Subtotal</p>
-                      <p class="mb-2">$4798.00</p>
-                    </div>
-
-                    <div class="d-flex justify-content-between">
-                      <p class="mb-2">Shipping</p>
-                      <p class="mb-2">$20.00</p>
-                    </div>
-
-                    <div class="d-flex justify-content-between mb-4">
-                      <p class="mb-2">Total(Incl. taxes)</p>
-                      <p class="mb-2">$4818.00</p>
-                    </div>
-
-                    <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-info btn-block btn-lg">
-                      <div class="d-flex justify-content-between">
-                        <span>$4818.00</span>
-                        <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
-                      </div>
-                    </button>
-
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
+
+</div>
+
+
+<footer class="site-footer">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-10 me-auto mb-4">
+                        <h4 class="text-white mb-3"><a href="index.php">Marga's</a> Cake</h4>
+                        <p class="copyright-text text-muted mt-lg-5 mb-4 mb-lg-0">Copyright © 2024 <strong>Marga's Cake</strong></p>
+                        <br>
+                        <p class="copyright-text">Designed by <a href="https://www.margascake.com/" target="_blank">Developer</a></p>
+                    </div>
+
+                    <div class="col-lg-5 col-8">
+                        <h5 class="text-white mb-3">Sitemap</h5>
+                        <ul class="footer-menu d-flex flex-wrap">
+                            <li class="footer-menu-item"><a href="about.php" class="footer-menu-link">About</a></li>
+
+                            <li class="footer-menu-item"><a href="products.php" class="footer-menu-link">Products</a></li>
+
+                            <li class="footer-menu-item"><a href="" class="footer-menu-link">Privacy policy</a></li>
+
+                            <li class="footer-menu-item"><a href="faq.php" class="footer-menu-link">FAQs</a></li>
+
+                            <li class="footer-menu-item"><a href="contact.php" class="footer-menu-link">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-4">
+                        <h5 class="text-white mb-3">Social</h5>
+
+                        <ul class="social-icon">
+
+                            <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="social-icon-link bi-youtube"></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="social-icon-link bi-whatsapp"></a></li>
+
+                            <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="social-icon-link bi-instagram"></a></li>
+
+                            <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="social-icon-link bi-skype"></a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS -->
+<script src="js/Headroom.js"></script>
+<script src="js/jQuery.headroom.js"></script>
+<script src="js/slick.min.js"></script>
+<script src="js/custom.js"></script>
+
 </body>
 </html>
