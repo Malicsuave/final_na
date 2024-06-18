@@ -33,11 +33,11 @@ function check($username, $password) {
         return false;
     }
 
-    function signupUsers($username, $email, $password, $profile_picture_path)
+    function signup($username, $email, $password)
     {
         $con = $this->opencon();
         // Save user data along with profile picture path to the database
-        $con->prepare("INSERT INTO signup (username, email, password, user_profile_picture) VALUES (?,?,?,?)")->execute([$username, $email, $password, $profile_picture_path]);
+        $con->prepare("INSERT INTO signup (username, email, password) VALUES (?,?,?)")->execute([$username, $email, $password]);
         return $con->lastInsertId();
         }
     
