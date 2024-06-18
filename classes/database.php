@@ -33,13 +33,13 @@ function check($username, $password) {
         return false;
     }
 
-    function signupUsers($username, $email, $password, $profile_picture_path)
-    {
-        $con = $this->opencon();
-        // Save user data along with profile picture path to the database
-        $con->prepare("INSERT INTO signup (username, email, password, user_profile_picture) VALUES (?,?,?,?)")->execute([$username, $email, $password, $profile_picture_path]);
-        return $con->lastInsertId();
-        }
+    // function signupUser($username, $email, $password, $profilePicture)
+    // {
+    //     $con = $this->opencon();
+    //     // Save user data along with profile picture path to the database
+    //     $con->prepare("INSERT INTO signup (username, email, password, user_profile_picture) VALUES (?,?,?,?)")->execute([$username, $email, $password, $profilePicture]);
+    //     return $con->lastInsertId();
+    //     }
     
 
 
@@ -73,10 +73,10 @@ function signupUser($firstname, $lastname, $birthday, $sex, $email, $username, $
     return $con->lastInsertId(); // Ensure this returns the correct ID
 }
 
-function insertAddress($User_Id, $street, $barangay, $city, $province) {
+function insertAddress($street, $barangay, $city, $province) {
     $con = $this->opencon();
     $stmt = $con->prepare("INSERT INTO user_address (registered_Id, street, barangay, city, province) VALUES (?, ?, ?, ?, ?)");
-    $stmt->execute([$User_Id, $street, $barangay, $city, $province]);
+    $stmt->execute([$street, $barangay, $city, $province]);
 }
 
 
