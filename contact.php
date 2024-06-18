@@ -1,3 +1,26 @@
+
+
+<?php
+session_start();
+$current_page = basename($_SERVER['PHP_SELF']);
+require_once('classes/database.php');
+$con = new Database();
+
+if (isset($_SESSION['User_Id'])) {
+    $id = $_SESSION['User_Id'];
+    $data = $con->viewdata($id);
+
+    $profilePicture = $data['user_profile_picture'] ?? 'path/to/default/profile_picture.jpg';
+    $username = $_SESSION['username'];
+} else {
+    $profilePicture = 'path/to/default/profile_picture.jpg';
+    $username = 'Guest';
+}
+?>
+
+
+
+
 <!doctype html>
 <html lang="en">
     <head>
@@ -33,7 +56,7 @@ https://www.tooplate.com/view/2127-little-fashion
     </head>
     
     <body>
-    <?php include ('includes/navbar.php'); ?> 
+    <?php include ('user-navbar.php'); ?> 
         <section class="preloader">
             <div class="spinner">
                 <span class="sk-inner-circle"></span>

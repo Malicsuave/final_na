@@ -33,13 +33,13 @@ function check($username, $password) {
         return false;
     }
 
-    // function signupUser($username, $email, $password, $profilePicture)
-    // {
-    //     $con = $this->opencon();
-    //     // Save user data along with profile picture path to the database
-    //     $con->prepare("INSERT INTO signup (username, email, password, user_profile_picture) VALUES (?,?,?,?)")->execute([$username, $email, $password, $profilePicture]);
-    //     return $con->lastInsertId();
-    //     }
+    function signupUsers($username, $email, $password, $profile_picture_path)
+    {
+        $con = $this->opencon();
+        // Save user data along with profile picture path to the database
+        $con->prepare("INSERT INTO signup (username, email, password, user_profile_picture) VALUES (?,?,?,?)")->execute([$username, $email, $password, $profile_picture_path]);
+        return $con->lastInsertId();
+        }
     
 
 
