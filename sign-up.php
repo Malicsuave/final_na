@@ -1,30 +1,88 @@
 <?php
- 
- require_once('classes/database.php');
- $con=new database();
+require_once('classes/database.php');
+$con = new database();
 
- $error = "";
-  
+$error_message = "";
+
 if (isset($_POST["signup"])) {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirm = $_POST['confirm'];
-    
+    $target_dir = "profile/";
 
-    if($password==$confirm) {
-        if ($con->signup($username,$email,$password)) {
-            header('location:sign-in.php');
-    }else{
-        $error_message ="Username already exists.Please Choose
-        a diffent username.";
+    // Initialize $new_file_name with an empty string
+    $new_file_name = "";
+
+    // Check if the file was uploaded without errors
+    if (isset($_FILES['profile']) && $_FILES['profile']['error'] === UPLOAD_ERR_OK) {
+        $original_file_name = basename($_FILES["profile"]["name"]);
+        $new_file_name = $original_file_name;
+
+        $target_file = $target_dir . $original_file_name;
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        $uploadOk = 1;
+
+        // Check if file already exists and rename if necessary
+        if (file_exists($target_file)) {
+            // Generate a unique file name by appending a timestamp
+            $new_file_name = pathinfo($original_file_name, PATHINFO_FILENAME) . '_' . time() . '.' . $imageFileType;
+            $target_file = $target_dir . $new_file_name;
+        } else {
+            // Update $target_file with the original file name
+            $target_file = $target_dir . $original_file_name;
+        }
+
+        // Check if file is an actual image or fake image
+        $check = getimagesize($_FILES["profile"]["tmp_name"]);
+        if ($check === false) {
+            echo "File is not an image.";
+            $uploadOk = 0;
+        }
+
+        // Check file size
+        if ($_FILES["profile"]["size"] > 500000) {
+            echo "Sorry, your file is too large.";
+            $uploadOk = 0;
+        }
+
+        // Allow certain file formats
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            $uploadOk = 0;
+        }
+
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+            echo "Sorry, your file was not uploaded.";
+        } else {
+            if (move_uploaded_file($_FILES["profile"]["tmp_name"], $target_file)) {
+                echo "The file " . htmlspecialchars($new_file_name) . " has been uploaded.";
+
+                // Save the user data and the path to the profile picture in the database
+                $profile_picture_path = 'profile/' . $new_file_name; // Save the new file name (without directory)
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
+        }
+    } else {
+        echo "No file was uploaded or there was an upload error.";
     }
-}else{
-    $error_message = "Password did not match";
-}
 
-  }
- ?>
+    if ($password == $confirm) {
+        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+
+        if ($con->signupUsers($username, $email, $hashed_password, $profile_picture_path)) {
+            header('Location: sign-in.php');
+            exit(); // Ensure no further code is executed after redirection
+        } else {
+            $error_message = "Username already exists. Please choose a different username.";
+        }
+    } else {
+        $error_message = "Passwords do not match.";
+    }
+}
+?>
 
 
 

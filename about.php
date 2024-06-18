@@ -55,14 +55,14 @@ https://www.tooplate.com/view/2127-little-fashion
 
                         <div class="col-lg-6 col-12 header-info">
                             <h1>
-                                <span class="d-block text-primary">Company</span>
-                                <span class="d-block text-dark">Fashion</span>
+                                <span class="d-block text-primary">Customized</span>
+                                <span class="d-block text-dark">Cakes</span>
                             </h1>
                         </div>
                     </div>
                 </div>
 
-                <img src="images/header/businesspeople-meeting-office-working.jpg" class="header-image img-fluid" alt="">
+                <img src="images/header/story(1).jpg" class="header-image img-fluid" alt="">
             </header>
 
             <section class="team section-padding">
@@ -70,48 +70,15 @@ https://www.tooplate.com/view/2127-little-fashion
                     <div class="row">
 
                         <div class="col-12">
-                            <h2 class="mb-5">Meet our <span>team</span></h2>
+                            <h2 class="mb-5">Meet The <span>Baker</span></h2>
                         </div>
 
-                        <div class="col-lg-4 mb-4 col-12">
-                            <div class="team-thumb d-flex align-items-center">
-                                <img src="images/people/senior-man-wearing-white-face-mask-covid-19-campaign-with-design-space.jpeg" class="img-fluid custom-circle-image team-image me-4" alt="">
-
-                                <div class="team-info">
-                                    <h5 class="mb-0">Don</h5>
-                                    <strong class="text-muted">Product, VP</strong>
-
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn custom-modal-btn" data-bs-toggle="modal" data-bs-target="#don">
-                                      <i class="bi-plus-circle-fill"></i>
-                                    </button>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 mb-4 col-12">
-                            <div class="team-thumb d-flex align-items-center">
-                                <img src="images/people/portrait-british-woman.jpeg" class="img-fluid custom-circle-image team-image me-4" alt="">
-
-                                <div class="team-info">
-                                    <h5 class="mb-0">Kelly</h5>
-                                    <strong class="text-muted">Marketing</strong>
-
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn custom-modal-btn" data-bs-toggle="modal" data-bs-target="#kelly">
-                                      <i class="bi-plus-circle-fill"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 mb-lg-0 mb-4 col-12">
+                        <div class="mx-auto">
                             <div class="team-thumb d-flex align-items-center">
                                 <img src="images/people/beautiful-woman-face-portrait-brown-background.jpeg" class="img-fluid custom-circle-image team-image me-4" alt="">
 
                                 <div class="team-info">
-                                    <h5 class="mb-0">Marie</h5>
+                                    <h5 class="mb-0">Margarita Isabel</h5>
                                     <strong class="text-muted">Founder</strong>
 
                                     <!-- Button trigger modal -->
@@ -310,23 +277,23 @@ https://www.tooplate.com/view/2127-little-fashion
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content border-0">
                     <div class="modal-header flex-column">
-                        <h3 class="modal-title" id="exampleModalLabel">Marie Sam</h3>
+                        <h3 class="modal-title" id="exampleModalLabel">Margarita Isabel Valencia</h3>
 
-                        <h6 class="text-muted">Founder & CEO</h6>
+                        <h6 class="text-muted">Founder & Baker</h6>
 
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
                     <div class="modal-body">
-                        <h5 class="mb-4">Over three years in business had the chance to work on variety of projects, with companies</h5>
+                        <h5 class="mb-4">Over six years in business had the chance to work on variety of themes and flavors, with events and organizers for parties and more</h5>
 
                         <div class="row mb-4">
                             <div class="col-lg-6 col-12">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                <p>I Started with a small oven baking goods as a hobby until members of my community and other firends gave their families and friends a taste of the baked goods and they insisted on ordering them.</p>
                             </div>
 
                             <div class="col-lg-6 col-12">
-                                <p>Incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse commodo viverra.</p>
+                                <p>Following that, more and more people started ordring which made my small bussines grow into something larger. With baking cakes for the mayor of our town to partnering up to organizers to be their supplier for events.</p>
                             </div>
                         </div>
 
