@@ -33,26 +33,15 @@ function check($username, $password) {
         return false;
     }
 
-function signup($username, $email, $password){
+    function signupUsers($username, $email, $password, $profile_picture_path)
+    {
         $con = $this->opencon();
-
-// Check if the username is already exists
-
-    $query=$con->prepare("SELECT username FROM signup WHERE username =?");
-    $query->execute([$username]);
-    $existingUser= $query->fetch();
+        // Save user data along with profile picture path to the database
+        $con->prepare("INSERT INTO signup (username, email, password, user_profile_picture) VALUES (?,?,?,?)")->execute([$username, $email, $password, $profile_picture_path]);
+        return $con->lastInsertId();
+        }
     
 
-// If the username already exists, return false
-    if($existingUser){
-    return false;
-}
-// Insert the new username and password into the database
-    return $con->prepare("INSERT INTO signup(username,email,password)
-VALUES (?, ?, ?)")
-           ->execute([$username,$email, $password]);
-           
-}
 
 // function signupUser($username, $password, $firstname, $lastname, $birthday, $sex){
 //     $con = $this->opencon();
