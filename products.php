@@ -70,7 +70,7 @@ https://www.tooplate.com/view/2127-little-fashion
                         <div class="col-lg-10 col-12">
                             <h1>
                                 <span class="d-block text-primary">Choose your</span>
-                                <span class="d-block text-dark">favorite stuffs</span>
+                                <span class="d-block text-dark">theme of cake</span>
                             </h1>
                         </div>
                     </div>
@@ -88,7 +88,7 @@ https://www.tooplate.com/view/2127-little-fashion
                         <div class="col-lg-4 col-12 mb-3">
                             <div class="product-thumb">
                                 <a href="product-detail.php">
-                                    <img src="images/product/evan-mcdougall-qnh1odlqOmk-unsplash.jpeg" class="img-fluid product-image" alt="">
+                                    <img src="photos/3.png" class="img-fluid product-image" alt="">
                                 </a>
 
                                 <div class="product-top d-flex">
@@ -100,10 +100,10 @@ https://www.tooplate.com/view/2127-little-fashion
                                 <div class="product-info d-flex">
                                     <div>
                                         <h5 class="product-title mb-0">
-                                            <a href="product-detail.php" class="product-title-link">Tree pot</a>
+                                            <a href="product-detail.php" class="product-title-link">Rustic Cake</a>
                                         </h5>
 
-                                        <p class="product-p">Original package design from house</p>
+                                        <p class="product-p">Simple yet elegant design perfect for a wedding</p>
                                     </div>
 
                                     <small class="product-price text-muted ms-auto">$25</small>
@@ -114,7 +114,7 @@ https://www.tooplate.com/view/2127-little-fashion
                         <div class="col-lg-4 col-12 mb-3">
                             <div class="product-thumb">
                                 <a href="product-detail.php">
-                                    <img src="images/product/jordan-nix-CkCUvwMXAac-unsplash.jpeg" class="img-fluid product-image" alt="">
+                                    <img src="photos/1.png" class="img-fluid product-image" alt="">
                                 </a>
 
                                 <div class="product-top d-flex">
@@ -126,10 +126,10 @@ https://www.tooplate.com/view/2127-little-fashion
                                 <div class="product-info d-flex">
                                     <div>
                                         <h5 class="product-title mb-0">
-                                            <a href="product-detail.php" class="product-title-link">Fashion set</a>
+                                            <a href="product-detail.php" class="product-title-link">4 tier cake</a>
                                         </h5>
 
-                                        <p class="product-p">Costume package</p>
+                                        <p class="product-p">Costume designs</p>
                                     </div>
 
                                     <small class="product-price text-muted ms-auto">$35</small>
@@ -140,7 +140,7 @@ https://www.tooplate.com/view/2127-little-fashion
                         <div class="col-lg-4 col-12">
                             <div class="product-thumb">
                                 <a href="product-detail.php">
-                                    <img src="images/product/nature-zen-3Dn1BZZv3m8-unsplash.jpeg" class="img-fluid product-image" alt="">
+                                    <img src="photos/2.png" class="img-fluid product-image" alt="">
                                 </a>
 
                                 <div class="product-top d-flex">
@@ -168,7 +168,7 @@ https://www.tooplate.com/view/2127-little-fashion
                         <div class="col-lg-4 col-12 mb-3">
                             <div class="product-thumb">
                                 <a href="product-detail.php">
-                                    <img src="images/product/team-fredi-8HRKoay8VJE-unsplash.jpeg" class="img-fluid product-image" alt="">
+                                    <img src="photos/3.png" class="img-fluid product-image" alt="">
                                 </a>
 
                                 <div class="product-top d-flex">
@@ -194,7 +194,7 @@ https://www.tooplate.com/view/2127-little-fashion
                         <div class="col-lg-4 col-12 mb-3">
                             <div class="product-thumb">
                                 <a href="product-detail.php">
-                                    <img src="images/product/quokkabottles-kFc1_G1GvKA-unsplash.jpeg" class="img-fluid product-image" alt="">
+                                    <img src="photos/2.png" class="img-fluid product-image" alt="">
                                 </a>
 
                                 <div class="product-top d-flex">
@@ -218,7 +218,7 @@ https://www.tooplate.com/view/2127-little-fashion
                         <div class="col-lg-4 col-12 mb-3">
                             <div class="product-thumb">
                                 <a href="product-detail.php">
-                                    <img src="images/product/anis-m-WnVrO-DvxcE-unsplash.jpeg" class="img-fluid product-image" alt="">
+                                    <img src="photos/1.png" class="img-fluid product-image" alt="">
                                 </a>
 
                                 <div class="product-top d-flex">
