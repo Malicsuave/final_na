@@ -79,7 +79,7 @@ if (isset($_SESSION['User_Id'])) {
    </table>
 
    <div class="checkout-btn">
-      <a href="checkout.php" class="btn">Proceed to Checkout</a>
+   <a type="button" class="btn custom-btn cart-btn ms-lg-4" href=register.php>Checkout</a>
    </div>
 
 </section>

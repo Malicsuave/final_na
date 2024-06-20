@@ -98,7 +98,7 @@ if (isset($_SESSION['User_Id'])) {
                     </ul>
                 <?php else: ?>
                     <a href="sign-in.php" class="bi-person custom-icon me-3"></a>
-                    <a href="product-detail.php" class="bi-bag custom-icon"></a>
+                    <a href="cart.php" class="bi-bag custom-icon"></a>
                 <?php endif; ?>
             </div>
         </div>

@@ -1,8 +1,6 @@
 <?php
- session_start();
- if (empty($_SESSION['username'])) {
-     header('location:sign-in.php');
- }
+session_start();
+$current_page = basename($_SERVER['PHP_SELF']);
 require_once('classes/database.php');
 $con = new database();
 $error = "";
@@ -20,9 +18,9 @@ if (isset($_POST['multisave'])) {
 
   // Getting the address information
   $street = $_POST['street'];
-  $barangay = $_POST['barangay'];
-  $city = $_POST['city'];
-  $province = $_POST['region'];
+  $barangay = $_POST['barangay_text'];
+  $city = $_POST['city_text'];
+  $province = $_POST['region_text'];
 
    // Handle file upload
    $target_dir = "uploads/";
@@ -71,11 +69,11 @@ if (isset($_POST['multisave'])) {
             // Save the user data and the path to the profile picture in the database
             $profile_picture_path = 'uploads/'.$new_file_name; // Save the new file name (without directory)
             
-            $userID = $con->signupUser($firstname, $lastname, $birthday, $sex, $email, $username, $profile_picture_path, $password);
+            $registerd_Id = $con->signupUser($firstname, $lastname, $birthday, $sex, $email, $username, $profile_picture_path, $password);
 
-            if ($userID) {
+            if ($registerd_Id) {
                 // Signup successful, insert address into users_address table
-                if ($con->insertAddress($street, $barangay, $city, $province)) {
+                if ($con->insertAddress($street, $barangay, $city, $province, $registerd_Id)) {
                     // Address insertion successful, redirect to login page
                     header('location:index.php');
                     exit; // Stop further execution
@@ -123,7 +121,7 @@ if (isset($_POST['multisave'])) {
 <body>
 <?php include('user-navbar.php'); ?>
 <div class="container custom-container rounded-3 shadow my-5 p-3 px-5">
-  <h3 class="text-center mt-4">Registration Form</h3>
+  <h3 class="text-center mt-4">Order Form</h3>
   <form id="registration-form" method="post" action="" enctype="multipart/form-data" novalidate>
     <!-- Step 1 -->
     <div class="form-step form-step-active" id="step-1">
@@ -220,7 +218,7 @@ if (isset($_POST['multisave'])) {
         <div class="card-body">
           <div class="form-group">
             <label class="form-label">Region<span class="text-danger"> *</span></label>
-            <select name="region" class="form-control form-control-md" id="region"></select>
+            <select name="user_region" class="form-control form-control-md" id="region"></select>
             <input type="hidden" class="form-control form-control-md" name="region_text" id="region-text">
             <div class="valid-feedback">Looks good!</div>
             <div class="invalid-feedback">Please select a region.</div>
@@ -228,14 +226,14 @@ if (isset($_POST['multisave'])) {
           <div class="form-row">
             <div class="form-group col-md-6">
               <label class="form-label">Province<span class="text-danger"> *</span></label>
-              <select name="province" class="form-control form-control-md" id="province"></select>
+              <select name="user_province" class="form-control form-control-md" id="province"></select>
               <input type="hidden" class="form-control form-control-md" name="province_text" id="province-text" required>
               <div class="valid-feedback">Looks good!</div>
               <div class="invalid-feedback">Please select your province.</div>
             </div>
             <div class="form-group col-md-6">
               <label class="form-label">City / Municipality<span class="text-danger"> *</span></label>
-              <select name="city" class="form-control form-control-md" id="city"></select>
+              <select name="user_city" class="form-control form-control-md" id="city"></select>
               <input type="hidden" class="form-control form-control-md" name="city_text" id="city-text" required>
               <div class="valid-feedback">Looks good!</div>
               <div class="invalid-feedback">Please select your city/municipality.</div>
@@ -243,7 +241,7 @@ if (isset($_POST['multisave'])) {
           </div>
           <div class="form-group">
             <label class="form-label">Barangay<span class="text-danger"> *</span></label>
-            <select name="barangay" class="form-control form-control-md" id="barangay"></select>
+            <select name="user_barangay" class="form-control form-control-md" id="barangay"></select>
             <input type="hidden" class="form-control form-control-md" name="barangay_text" id="barangay-text" required>
             <div class="valid-feedback">Looks good!</div>
             <div class="invalid-feedback">Please select your barangay.</div>
@@ -257,7 +255,7 @@ if (isset($_POST['multisave'])) {
         </div>
       </div>
       <button type="button" class="btn btn-secondary mt-3" onclick="prevStep()">Previous</button>
-      <button type="submit" name="multisave" class="btn btn-primary mt-3">Sign Up</button>
+      <a type="submit" name="multisave" class="btn btn-primary mt-3" href = cart.php>Confirm</a>
       <a class="btn btn-outline-danger mt-3" href="index.php">Go Back</a>
     </div>
   </form>

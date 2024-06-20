@@ -61,7 +61,7 @@ https://www.tooplate.com/view/2127-little-fashion
 
                         <div class="col-lg-6 col-12">
                             <div class="product-thumb">
-                                <img src="images/product/evan-mcdougall-qnh1odlqOmk-unsplash.jpeg" class="img-fluid product-image" alt="">
+                                <img src="photos/1.png" class="img-fluid product-image" alt="">
                             </div>
                         </div>
 
@@ -282,7 +282,7 @@ https://www.tooplate.com/view/2127-little-fashion
 
                     <div class="modal-footer">
                         <div class="row w-50">
-                            <button type="button" class="btn custom-btn cart-btn ms-lg-4">Checkout</button>
+                            <a type="button" class="btn custom-btn cart-btn ms-lg-4" href=cart.php>Add To Cart</a>
                         </div>
                     </div>
                 </div>

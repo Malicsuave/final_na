@@ -94,7 +94,7 @@ https://www.tooplate.com/view/2127-little-fashion
 
                                     <p class="lead text-white mt-lg-3 mb-lg-5">Please share this Little Fashion template to your friends. Thank you for supporting us.</p>
 
-                                    <a href="product.php" class="btn custom-btn">Explore products</a>
+                                    <a href="products.php" class="btn custom-btn">Explore products</a>
                                 </div>
                             </div>
                         </div>

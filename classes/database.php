@@ -73,11 +73,12 @@ function signupUser($firstname, $lastname, $birthday, $sex, $email, $username, $
     return $con->lastInsertId(); // Ensure this returns the correct ID
 }
 
-function insertAddress($street, $barangay, $city, $province) {
-    $con = $this->opencon();
-    $stmt = $con->prepare("INSERT INTO user_address (registered_Id, street, barangay, city, province) VALUES (?, ?, ?, ?, ?)");
-    $stmt->execute([$street, $barangay, $city, $province]);
-}
+function insertAddress($street, $barangay, $city, $province, $registerd_Id)
+    {
+        $con = $this->opencon();
+        return $con->prepare("INSERT INTO user_address (street, barangay, city, province, registered_Id) VALUES (?,?,?,?,?)")->execute([$street, $barangay,  $city, $province, $registerd_Id]);
+          
+    }
 
 
 // function view(){
