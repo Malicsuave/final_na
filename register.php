@@ -13,6 +13,7 @@ if (isset($_POST['multisave'])) {
   // Getting the personal information
   $firstname = $_POST['firstname'];
   $lastname = $_POST['lastname'];
+  $contact_number = $_POST['contact_number'];
   $birthday = $_POST['birthday'];
   $sex = $_POST['sex'];
 
@@ -69,7 +70,7 @@ if (isset($_POST['multisave'])) {
             // Save the user data and the path to the profile picture in the database
             $profile_picture_path = 'uploads/'.$new_file_name; // Save the new file name (without directory)
             
-            $registerd_Id = $con->signupUser($firstname, $lastname, $birthday, $sex, $email, $username, $profile_picture_path, $password);
+            $registerd_Id = $con->signupUser($firstname, $lastname, $birthday, $sex, $email, $username, $profile_picture_path, $password, $contact_number);
 
             if ($registerd_Id) {
                 // Signup successful, insert address into users_address table
@@ -175,6 +176,13 @@ if (isset($_POST['multisave'])) {
                 <div class="form-group col-md-6 col-sm-12">
                   <label for="lastName">Last Name:</label>
                   <input type="text" class="form-control" name="lastname" placeholder="Enter last name" required>
+                  <div class="valid-feedback">Looks good!</div>
+                  <div class="invalid-feedback">Please enter a valid last name.</div>
+                </div>
+              </div>
+              <div class="form-group col-md-6 col-sm-12">
+                  <label for="contact_number">Contact Number:</label>
+                  <input type="text" class="form-control" name="contact_number" placeholder="Enter contact number" required>
                   <div class="valid-feedback">Looks good!</div>
                   <div class="invalid-feedback">Please enter a valid last name.</div>
                 </div>

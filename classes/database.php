@@ -66,10 +66,10 @@ function check($username, $password) {
 // }
 
 
-function signupUser($firstname, $lastname, $birthday, $sex, $email, $username, $profilePicture, $password) {
+function signupUser($firstname, $lastname, $birthday, $sex, $email, $username, $profilePicture, $password, $contact_number) {
     $con = $this->opencon();
-    $stmt = $con->prepare("INSERT INTO registered_user (firstname, lastname, birthday, sex, email, username, user_profile_picture, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->execute([$firstname, $lastname, $birthday, $sex, $email, $username, $profilePicture, $password]);
+    $stmt = $con->prepare("INSERT INTO registered_user (firstname, lastname, birthday, sex, email, username, user_profile_picture, password, contact_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->execute([$firstname, $lastname, $birthday, $sex, $email, $username, $profilePicture, $password, $contact_number]);
     return $con->lastInsertId(); // Ensure this returns the correct ID
 }
 

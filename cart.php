@@ -56,7 +56,7 @@ if (isset($_SESSION['User_Id'])) {
 
       <tbody>
          <tr>
-            <td><img src="uploaded_img/sample_image.jpg" height="100" alt=""></td>
+            <td><img src="uploads/1.png" height="100" alt=""></td>
             <td>Sample Item</td>
             <td>$100/-</td>
             <td>
