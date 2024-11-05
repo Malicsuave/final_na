@@ -1,19 +1,6 @@
 <?php
 session_start();
-$current_page = basename($_SERVER['PHP_SELF']);
-require_once('classes/database.php');
-$con = new Database();
-
-if (isset($_SESSION['User_Id'])) {
-    $id = $_SESSION['User_Id'];
-    $data = $con->viewdata($id);
-
-    $profilePicture = $data['user_profile_picture'] ?? 'path/to/default/profile_picture.jpg';
-    $username = $_SESSION['username'];
-} else {
-    $profilePicture = 'path/to/default/profile_picture.jpg';
-    $username = 'Guest';
-}
+include ("classes/database.php")
 ?>
 
 <!doctype html>
@@ -25,7 +12,7 @@ if (isset($_SESSION['User_Id'])) {
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Tooplate's Little Fashion - About Page</title>
+        <title>Marga's Cake - About Page</title>
 
         <!-- CSS FILES -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -109,7 +96,7 @@ https://www.tooplate.com/view/2127-little-fashion
                     <div class="row">
 
                         <div class="col-lg-9 mx-auto col-11">
-                            <h2 class="text-center">Customer love, <br> <span>Little</span> Fashion</h2>
+                            <h2 class="text-center">Customer love, <br> <span>Marga's</span> Cake</h2>
 
                             <div class="slick-testimonial">
                                 <div class="slick-testimonial-caption">
@@ -118,7 +105,7 @@ https://www.tooplate.com/view/2127-little-fashion
                                     <div class="slick-testimonial-client d-flex align-items-center mt-4">
                                         <img src="images/people/senior-man-wearing-white-face-mask-covid-19-campaign-with-design-space.jpeg" class="img-fluid custom-circle-image me-3" alt="">
 
-                                        <span>George, <strong class="text-muted">Digital Art Fashion</strong></span>
+                                        <span>George, <strong class="text-muted">Food Vlogger</strong></span>
                                     </div>
                                 </div>
 
@@ -128,7 +115,7 @@ https://www.tooplate.com/view/2127-little-fashion
                                     <div class="slick-testimonial-client d-flex align-items-center mt-4">
                                         <img src="images/people/beautiful-woman-face-portrait-brown-background.jpeg" class="img-fluid custom-circle-image me-3" alt="">
 
-                                        <span>Sandar, <strong class="text-muted">Zoom Fashion Idea</strong></span>
+                                        <span>Sandar, <strong class="text-muted">Event Organizer</strong></span>
                                     </div>
                                 </div>
 
@@ -138,7 +125,7 @@ https://www.tooplate.com/view/2127-little-fashion
                                     <div class="slick-testimonial-client d-flex align-items-center mt-4">
                                         <img src="images/people/portrait-british-woman.jpeg" class="img-fluid custom-circle-image me-3" alt="">
 
-                                        <span>Marie, <strong class="text-muted">Art Fashion Design</strong></span>
+                                        <span>Marie, <strong class="text-muted">Customer</strong></span>
                                     </div>
                                 </div>
 
@@ -148,7 +135,7 @@ https://www.tooplate.com/view/2127-little-fashion
                                     <div class="slick-testimonial-client d-flex align-items-center mt-4">
                                         <img src="images/people/woman-wearing-mask-face-closeup-covid-19-green-background.jpeg" class="img-fluid custom-circle-image me-3" alt="">
 
-                                        <span>Catherine, <strong class="text-muted">Dress Fashion</strong></span>
+                                        <span>Catherine, <strong class="text-muted">Client</strong></span>
                                     </div>
                                 </div>
                             </div>
